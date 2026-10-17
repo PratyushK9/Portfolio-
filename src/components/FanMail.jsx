@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { SectionHeading } from './fx/Reveal'
+import { asset } from '../data/profile'
 
 // 100% imaginary, clearly-labelled parody testimonials. Quotes are made up.
 const ROW_1 = [
@@ -53,7 +54,7 @@ function Photo({ t }) {
     )
   }
   return (
-    <img src={`/founders/${slug(t.name)}.jpg`} alt={`${t.name} (parody card)`}
+    <img src={asset(`/founders/${slug(t.name)}.jpg`)} alt={`${t.name} (parody card)`}
       onError={() => setFailed(true)} className="h-full w-full object-cover object-top" />
   )
 }

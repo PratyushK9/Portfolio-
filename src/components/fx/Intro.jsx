@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { asset } from '../../data/profile'
 
 // Iron Man "Daddy's home" intro.
 // Browsers block autoplay with sound, so a "Power up" click starts the clip.
 // Put your clip at public/intro.mp4. If it's missing, an arc-reactor animation plays instead.
 // Shown once per browser session; add ?intro=1 to the URL to force it.
 const SEEN = 'pks-intro-seen'
-const VIDEO = '/intro.mp4'
+const VIDEO = asset('/intro.mp4')
 
 function shouldShow() {
   if (new URLSearchParams(window.location.search).has('intro')) return true

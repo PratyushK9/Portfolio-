@@ -1,4 +1,7 @@
 // Single source of truth for everything on the site.
+
+// Public-folder URL that also works when the site is served from a subfolder (e.g. GitHub Pages)
+export const asset = (path) => import.meta.env.BASE_URL + path.replace(/^\//, '')
 // All facts come from Pratyush's resume (Aug 2026). Edit here, not in components.
 
 export const profile = {
@@ -38,22 +41,22 @@ export const profile = {
     showPhone: false, // set to true to display your phone number publicly
   },
 
-  resume: '/resume.pdf',
+  resume: asset('/resume.pdf'),
 
   // "Try this challenge" button below Contact.
   // Put the video at public/challenge.mp4, or set `link` to a YouTube/Instagram URL to open that instead.
-  challenge: { video: '/challenge.mp4', link: '' },
+  challenge: { video: asset('/challenge.mp4'), link: '' },
 
   // Your photos: drop files in public/photos and list them here (see public/photos/README.md)
   photos: {
-    portrait: '/photos/portrait.webp',
+    portrait: asset('/photos/portrait.webp'),
     portraitCaption: 'To become as great as SRK',
     gallery: [
       // focus = which part of the photo stays visible in the 4:5 crop
-      { src: '/photos/beach.webp', caption: 'On a beach', focus: 'center 62%' },
-      { src: '/photos/running.webp', caption: 'On a running track', focus: 'center 55%' },
-      { src: '/photos/cafe.webp', caption: 'On a date at a cafe', focus: 'center 45%' },
-      { src: '/photos/mountains.webp', caption: 'On the mountains', focus: 'center 70%' },
+      { src: asset('/photos/beach.webp'), caption: 'On a beach', focus: 'center 62%' },
+      { src: asset('/photos/running.webp'), caption: 'On a running track', focus: 'center 55%' },
+      { src: asset('/photos/cafe.webp'), caption: 'On a date at a cafe', focus: 'center 45%' },
+      { src: asset('/photos/mountains.webp'), caption: 'On the mountains', focus: 'center 70%' },
     ],
   },
 
