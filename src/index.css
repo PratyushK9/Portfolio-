@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@theme inline {
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-card: var(--card);
+  --color-line: var(--line);
+}
+
+/* ---------- Scene palettes (set by useTimeOfDay on <html data-scene>) ---------- */
+:root,
+[data-scene="night"] {
+  --sky-1: #050816; --sky-2: #0d1640; --sky-3: #1f2f7a;
+  --text: #eef1ff; --muted: #a3aedb;
+  --accent: #7cf7ff; --accent-2: #ff7ac6;
+  --card: rgb(14 20 56 / 0.62); --line: rgb(150 170 255 / 0.2);
+  --glow: rgb(124 247 255 / 0.55);
+  --on-accent: #06102a;
+}
+[data-scene="dawn"] {
+  --sky-1: #6f5aa8; --sky-2: #f39bb4; --sky-3: #ffd7b5;
+  --text: #2b1840; --muted: #5d4a72;
+  --accent: #e2457a; --accent-2: #7a4fd6;
+  --card: rgb(255 246 248 / 0.66); --line: rgb(120 60 110 / 0.18);
+  --glow: rgb(226 69 122 / 0.4);
+  --on-accent: #fff;
+}
+[data-scene="day"] {
+  --sky-1: #4fb6ff; --sky-2: #9fdcff; --sky-3: #eaf8ff;
+  --text: #0e2a40; --muted: #3f5d74;
+  --accent: #ff6a1a; --accent-2: #1a7dff;
+  --card: rgb(255 255 255 / 0.7); --line: rgb(14 42 64 / 0.12);
+  --glow: rgb(255 106 26 / 0.4);
+  --on-accent: #fff;
+}
+[data-scene="sunset"] {
+  --sky-1: #2a1550; --sky-2: #a83f7c; --sky-3: #ff9b55;
+  --text: #fff5ec; --muted: #f3d3c3;
+  --accent: #ffd166; --accent-2: #ff6f91;
+  --card: rgb(42 16 58 / 0.55); --line: rgb(255 220 200 / 0.2);
+  --glow: rgb(255 209 102 / 0.5);
+  --on-accent: #2a1550;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--sky-2);
+  color: var(--text);
+  font-family: var(--font-sans);
+  transition: color 0.8s ease;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--accent); color: var(--on-accent); }
+
+/* Custom cursor hides the native one */
+.has-custom-cursor, .has-custom-cursor * { cursor: none !important; }
+
+.glass {
+  background: var(--card);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  transition: background 0.8s ease, border-color 0.8s ease;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Circuit pattern revealed around the cursor in the hero */
+.circuit {
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' fill='none' stroke='black' stroke-width='1.4'%3E%3Cpath d='M0 20h20l10 10h20M50 30v30h30M20 80V50l10-10M60 0v12l8 8h12M40 60h-20'/%3E%3Ccircle cx='50' cy='30' r='3'/%3E%3Ccircle cx='20' cy='50' r='3'/%3E%3Ccircle cx='68' cy='20' r='3'/%3E%3C/svg%3E");
+  --spot: radial-gradient(circle 260px at var(--mx, -999px) var(--my, -999px), #000 0%, transparent 70%);
+  background: var(--accent);
+  -webkit-mask-image: var(--pattern), var(--spot);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--pattern), var(--spot);
+  mask-composite: intersect;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-size: 80px 80px, 100% 100%;
+  -webkit-mask-size: 80px 80px, 100% 100%;
+}
+
+@keyframes twinkle { 0%, 100% { opacity: 0.25 } 50% { opacity: 1 } }
+@keyframes drift { from { transform: translateX(-30vw) } to { transform: translateX(130vw) } }
+@keyframes shoot {
+  0% { transform: translate(0, 0) rotate(-35deg) scaleX(0); opacity: 0 }
+  3% { opacity: 1; transform: translate(0, 0) rotate(-35deg) scaleX(1) }
+  10% { transform: translate(-40vw, 28vw) rotate(-35deg) scaleX(1); opacity: 0 }
+  100% { opacity: 0 }
+}
+@keyframes fly { from { transform: translateX(-10vw) } to { transform: translateX(110vw) } }
+@keyframes flap { 0%, 100% { transform: scaleY(1) } 50% { transform: scaleY(0.4) } }
+@keyframes current { to { stroke-dashoffset: -60 } }
+@keyframes blink { 50% { opacity: 0 } }
+@keyframes float-y { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+
+@keyframes marquee { to { transform: translateX(-50%) } }
+.marquee-track { animation: marquee linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+.wire-current { stroke-dasharray: 6 54; animation: current 2.4s linear infinite; }
+.caret::after { content: "▍"; margin-left: 2px; animation: blink 1s steps(1) infinite; color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  html { scroll-behavior: auto; }
+  .marquee { overflow-x: auto; }
+  .marquee-track { animation: none !important; }
+}
