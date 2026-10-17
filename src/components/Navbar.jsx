@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ModeDial from './ModeDial'
-import Bolt from './fx/Bolt'
 import { profile } from '../data/profile'
 
 const LINKS = [
@@ -33,12 +32,8 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-3 z-40 px-4">
       <nav className={`mx-auto flex max-w-6xl items-center justify-between rounded-full px-3 py-2 transition-all duration-500 ${scrolled ? 'glass shadow-xl' : ''}`}>
-        <a href="#top" data-cursor="Home" className="group flex items-center gap-2 pl-2">
-          <span className="grid h-9 w-9 place-items-center rounded-xl font-display text-sm font-extrabold transition-transform group-hover:rotate-[-8deg]"
-            style={{ background: 'linear-gradient(135deg, var(--accent), var(--accent-2))', color: 'var(--on-accent)' }}>
-            <Bolt />
-          </span>
-          <span className="font-display text-lg font-extrabold tracking-tight text-ink">{profile.firstName}<span className="text-accent">.</span></span>
+        <a href="#top" data-cursor="Home" className="pl-3">
+          <span className="font-display text-xl font-extrabold tracking-tight text-ink">{profile.firstName}<span className="text-accent">.</span></span>
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">
