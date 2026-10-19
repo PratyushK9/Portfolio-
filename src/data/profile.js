@@ -43,6 +43,14 @@ export const profile = {
 
   resume: asset('/resume.pdf'),
 
+  // Music on the phone/tablet page: official YouTube videos (IDs from youtube.com/watch?v=<ID>), played in order and looped
+  music: {
+    artist: 'Seedhe Maut',
+    videos: [
+      'XCIYHCXQoxQ', // RED | Seedhe Maut
+    ],
+  },
+
   // "Try this challenge" button below Contact.
   // Put the video at public/challenge.mp4, or set `link` to a YouTube/Instagram URL to open that instead.
   challenge: { video: asset('/challenge.mp4'), link: '' },

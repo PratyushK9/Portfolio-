@@ -15,8 +15,12 @@ import ScrollProgress from './components/fx/ScrollProgress'
 import EasterEgg from './components/fx/EasterEgg'
 import AskBubble from './components/fx/AskBubble'
 import Intro from './components/fx/Intro'
+import SmallScreen, { useSmallScreen } from './components/SmallScreen'
 
 export default function App() {
+  // Phones and tablets only get the "switch to a bigger screen" page
+  if (useSmallScreen()) return <SmallScreen />
+
   return (
     <SceneProvider>
       <SkyBackground />
